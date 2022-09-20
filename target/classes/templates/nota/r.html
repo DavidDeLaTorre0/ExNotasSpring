@@ -1,0 +1,47 @@
+<div class="container">
+	<h1>Lista de notas 
+		<th:block th:if="${alumno}!=null">
+		de <th:block th:text="${alumno.nombre}"/> <th:block th:text="${alumno.apellido}"/> 
+		</th:block>
+
+		<th:block th:if="${asignatura}!=null">
+		de <th:block th:text="${asignatura.nombre}"/> 
+		</th:block>
+	</h1>
+
+	<form action="/nota/c">
+		<input type="submit" value="Nueva nota" />
+	</form>
+	
+	<table class="table table-striped" >
+	
+	<tr>
+		<th:block th:if="${alumno}==null">
+		<th>Alumno </th>
+		</th:block>
+		
+		<th:block th:if="${asignatura}==null">
+		<th>Asignatura</th>
+		</th:block>
+		
+		<th>Número</th>
+	</tr>
+	
+	<th:block th:each="nota:${notas}">
+		<tr>
+			<th:block th:if="${alumno}==null">
+			<td th:text="|${nota.alumno.apellido}, ${nota.alumno.nombre}|" />
+			</th:block>
+			
+			<th:block th:if="${asignatura}==null">
+			<td th:text="|${nota.asignatura.nombre}|" />
+			</th:block>
+
+			
+			<td th:text="${nota.numero}"/>
+		</tr>
+
+	</th:block>
+		
+	</table>
+</div>

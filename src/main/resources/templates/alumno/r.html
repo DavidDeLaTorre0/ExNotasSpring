@@ -1,0 +1,31 @@
+<div class="container">
+	<h1>Lista de alumnos</h1>
+
+	<form action="/alumno/c">
+		<input type="submit" value="Nuevo alumno" />
+	</form>
+	
+	<table>
+	
+	<tr>
+		<th>Nombre </th>
+		<th>Apellido</th>
+		<th>Notas</th>
+	</tr>
+	
+	<?php foreach ($alumnos as $alumno):?>
+	<th:block th:each="alumno:${alumnos}">
+		<tr>
+			<td th:text="${alumno.nombre}"/>
+			<td th:text="${alumno.apellido}"/>
+			<td> 
+    			<form action="/nota/r" method="get">
+    				<input type="hidden" name="idAlumno" th:value="${alumno.id}"/>
+    				<input type="submit" th:value="|Ver (${alumno.notas.size()})|"/>
+    			</form>
+			</td>
+		</tr>
+
+	</th:block>	
+	</table>
+</div>

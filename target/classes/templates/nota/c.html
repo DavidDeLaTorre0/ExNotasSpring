@@ -1,0 +1,30 @@
+<div class="container">
+	<h1>Nueva nota</h1>
+
+	<form action="/nota/c" method="post">
+		
+		<fieldset>
+		<legend>Alumno</legend>
+		<select name="idAlumno">
+			<th:block th:each="alumno:${alumnos}">
+				<option th:value="${alumno.id}">
+					<th:block th:text="|${alumno.apellido}, ${alumno.nombre}|"/>
+				</option>
+			</th:block>
+		</select>
+		</fieldset>
+		<br/>
+		
+		<th:block th:each="asignatura:${asignaturas}">
+			<input th:id="|id-${asignatura.id}|" type="radio" th:value="${asignatura.id}" name="idAsignatura" checked="checked"/>
+			<label th:for="|id-${asignatura.id}|" th:text="${asignatura.nombre}"/>
+		</th:block>
+		<br/>
+	
+		<label for="idNota">Nota</label> 
+		<input id="idNota" type="number" name="numero" required="required" min="0" max="10" value="5"/> 
+		<br /> 
+		
+		<input type="submit" />
+	</form>
+</div>

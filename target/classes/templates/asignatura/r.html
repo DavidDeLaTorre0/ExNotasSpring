@@ -1,0 +1,32 @@
+<div class="container">
+	<h1>Lista de asignaturas
+	</h1>
+
+	<form action="/asignatura/c">
+		<input type="submit" value="Nueva asignatura" />
+	</form>
+	
+	<table>
+	
+	<tr>
+		<th>Nombre </th>
+		<th>Notas </th>
+	</tr>
+	
+	
+	<th:block th:each="asignatura : ${asignaturas}">
+		<tr>
+			<td th:text="${asignatura.nombre}"/>
+			<td> 
+    			<form action="/nota/r" method="get">
+    				<input type="hidden" name="idAsignatura" th:value="${asignatura.id}" />
+    				<input type="submit" th:value="|Ver (${asignatura.notas.size()})|" />
+    			</form>
+			</td>
+	
+		</tr>
+	
+	</th:block>
+		
+	</table>
+</div>
